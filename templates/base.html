@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %}Link Aggregator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 p-4">
+    <div class="max-w-lg mx-auto">
+        <nav class="flex justify-between mb-4">
+            <a href="/links" class="text-blue-500 font-medium">Links</a>
+            <a href="/papers" class="text-blue-500 font-medium">Papers</a>
+            <a href="/books" class="text-blue-500 font-medium">Books</a>
+        </nav>
+
+        <div class="flex items-center mb-4">
+            <input type="text" id="searchInput" oninput="searchLinks()" placeholder="Search links..." class="flex-1 px-4 py-2 mr-2 rounded-md border border-gray-300 focus:outline-none focus:ring focus:ring-blue-200">
+            <button class="px-4 py-2 bg-gray-500 text-white rounded-md hover:bg-gray-600 focus:outline-none focus:ring focus:ring-gray-300" onclick="shuffle()">Shuffle</button> </div>
+
+        {% block links %} {% endblock %}
+    </div>
+
+    <script>
+        function searchLinks() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const links = document.querySelectorAll('#linkList > div');
+
+            links.forEach(link => {
+                const text = link.textContent.toLowerCase();
+                if (text.includes(input)) {
+                    link.style.display = 'flex';
+                } else {
+                    link.style.display = 'none';
+                }
+            });
+        }
+
+        function shuffle() {
+            // Get all the links in the linkList div
+            var links = document.querySelectorAll("#linkList a");
+
+            // Check if there are any links
+            if (links.length > 0) {
+                // Select a random link
+                var randomLink = links[Math.floor(Math.random() * links.length)];
+
+                // Open the random link in a new tab
+                window.open(randomLink.href, '_blank');
+                links.splice(randomIndex, 1);
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Books
+{% endblock %}
+
+{% block links %}
+<div class="space-y-4" id="linkList">
+
+    {% for results in result %}
+    <div class="flex items-center">
+        <p class="text-gray-500 text-sm mr-2">{{results[2]}}</p>
+        <a href="{{ results[3] }}" class="text-blue-500 font-medium">{{results[1]}}</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

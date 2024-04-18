@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Links - Link Aggregator</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 p-4">
+    <div class="max-w-lg mx-auto">
+        <h1 class="text-2xl font-bold mb-4">Add Links</h1>
+        {% if msg %}
+        <div role="alert">
+            <div class="bg-green-500 text-white font-bold rounded-t px-4 py-2">
+                Success
+            </div>
+            <div class="border border-t-0 border-green-400 rounded-b bg-green-100 px-4 py-3 text-green-700">
+                <p>{{msg}}</p>
+            </div>
+        </div><br>
+        {% endif %}
+
+        {% if error %}
+        <div role="alert">
+            <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+                Error
+            </div>
+            <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+                <p>{{error}}</p>
+            </div>
+        </div><br>
+        {% endif %}
+
+        <form action="/add" method="POST">
+            <div class="mb-4">
+                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                <input type="text" id="name" name="name" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring focus:ring-blue-200" required>
+            </div>
+            <div class="mb-4">
+                <label for="links" class="block text-sm font-medium text-gray-700">Link URLs (Separate multiple links with commas)</label>
+                <input type="text" id="links" name="links" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring focus:ring-blue-200" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
+                <input type="date" id="date" name="date" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring focus:ring-blue-200" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+                <select id="category" name="category" class="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring focus:ring-blue-200" required>
+                    <option value="links">links</option>
+                    <option value="papers">papers</option>
+                    <option value="books">books</option>
+                </select>
+            </div>
+
+            <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200">Add Link</button>
+            <button onclick="window.location.href='/'" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200">Home</button>
+        </form>
+    </div>
+    <script>
+        const currentDate = new Date().toISOString().split('T')[0];
+
+        document.getElementById('date').value = currentDate;
+    </script>
+</body>
+
+</html>

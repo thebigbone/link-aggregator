@@ -1,0 +1,7 @@
+CREATE TABLE links, papers, books (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    date DATE NOT NULL,
+    link VARCHAR(255) NOT NULL,
+    CONSTRAINT unqiue_fields UNIQUE (name, link)
+);
